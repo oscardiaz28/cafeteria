@@ -1,0 +1,17 @@
+{
+    "name": "usuario/cafeteria",
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "./controllers",
+            "Router\\": "./",
+            "Models\\": "./models"
+        }
+    },
+    "authors": [
+        {
+            "name": "Oscar Diaz",
+            "email": "diazvargasod@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,3 @@
+sass config
+
+sass --watch assets/sass/main.scss public/css/styles.css

@@ -1,0 +1,99 @@
+$success: #0ABF30;
+$error: #e24d4c;
+
+.alert-container{
+    position: absolute;
+    top: 5%;
+    right: 0;
+    width: 30%;
+    height: auto;
+    z-index: 999999999;
+
+    .alert{
+        background-color: #F8D7DA;
+        padding: 2rem;
+        margin-bottom: .5rem;
+        color:  #c3091c;
+        border: 2px solid #c10518;
+    }
+}
+
+.notifications{
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    z-index: 999;
+    color: #333;
+    border-radius: 4px;
+    overflow: hidden;
+
+    .toast{
+        width: 40rem;
+        list-style: none;
+        border-radius: 8px;
+        padding: 16px 17px;
+        margin-bottom: 10px;
+        background-color: white;
+        justify-content: space-between;
+        position: relative;
+        animation: show_toast 0.3s ease forwards;
+        overflow: hidden;
+    }
+
+
+    @keyframes show_toast{
+        0%{
+            transform: translate(100%);
+        }
+        40%{
+            transform: translateX(-5%);
+        }
+        80%{
+            transform: translate(0%);
+        }
+        100%{
+            transform: translate(0);
+        }
+    }
+
+
+
+    .toast .column i{
+        font-size: 1.75rem;
+    }
+
+    .toast .column span{
+        font-size: 16px;
+        margin-left: 12px;
+    }
+
+    .toast::before{
+        position: absolute;
+        content: "";
+        height: 3px;
+        width: 100%;
+        bottom: 0px;
+        left: 0px;
+        animation: progress 5s linear forwards;
+    }
+
+    @keyframes progress {
+        100%{
+            width: 0%;
+        }
+    }
+
+
+    .toast.success::before{
+        background-color: $success;
+    }
+    .toast.success .column i{
+        color: $success;
+    }
+}
+
+.notifications :where(.toast, .column){
+    display: flex;
+    align-items: center;
+}
+
