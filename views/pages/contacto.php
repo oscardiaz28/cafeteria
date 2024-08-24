@@ -9,9 +9,9 @@ $auth = isset($_SESSION) && !empty($_SESSION) ? true : false;
 
 <section class="contacto">
             <div class="container">
-                <h2 class="section_title">Contacto</h2>
+                <h2 class="section_title" data-aos="fade-up" data-aos-once="true">Contacto</h2>
                 
-                <div class="contacto_container">
+                <div class="contacto_container" data-aos="fade-up" data-aos-delay="500" data-aos-once="true">
 
                     <div class="contacto_information">
                         <h3>Información de Contacto</h3>
@@ -58,7 +58,7 @@ $auth = isset($_SESSION) && !empty($_SESSION) ? true : false;
             
         </section>
 
-<?php include_once __DIR__ . '/templates/footer.php' ?>
+<?php include_once __DIR__ . '/templates/footer.php' ?> 
 
 
-        <?php $script = "<script src='js/app.js'></script>"; ?>
+<?php $script = "<script src='js/app.js'></script>"; ?>

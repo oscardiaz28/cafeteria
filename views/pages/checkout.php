@@ -8,7 +8,6 @@ $auth = isAuth();
 
 
 
-
 <div class="checkout_background">
     <section class="checkout container">
 
@@ -92,5 +91,10 @@ $auth = isAuth();
 
 
 <?php $script = 
-    "<script src='js/app.js'></script><script src='js/checkout.js'></script>";
+    "
+    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script src='js/app.js'></script>
+    <script src='js/checkout.js'></script>
+    "
+    ;
 ?>

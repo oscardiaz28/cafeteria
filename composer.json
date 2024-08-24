@@ -9,9 +9,9 @@
     },
     "authors": [
         {
-            "name": "Oscar Diaz",
-            "email": "diazvargasod@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "intervention/image": "^2.7"
+    }
 }

@@ -17,7 +17,7 @@ class Router{
 
     public function run(){
         $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); //Ruta solicitada
-        
+
         $method = $_SERVER['REQUEST_METHOD'];
 
         if($method === 'GET'){
@@ -40,7 +40,6 @@ class Router{
         }
 
         ob_start();
-
         include __DIR__ . "/views/{$vista}.php";
         $contenido = ob_get_clean();
         

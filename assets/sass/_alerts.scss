@@ -74,7 +74,7 @@ $error: #e24d4c;
         width: 100%;
         bottom: 0px;
         left: 0px;
-        animation: progress 5s linear forwards;
+        animation: progress 3s linear forwards;
     }
 
     @keyframes progress {
@@ -97,3 +97,18 @@ $error: #e24d4c;
     align-items: center;
 }
 
+.invalid{
+    display: none;
+}
+.valid{
+    display: none;
+}
+
+.needs_validation{
+    .invalid{
+        display: block;
+        font-size: 1.2rem;
+        color: lightcoral;
+    }
+  
+}

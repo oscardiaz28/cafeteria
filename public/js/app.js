@@ -57,6 +57,8 @@ let swiper = new Swiper(".mySwiper", {
 
     function showCarrito() {
         const cartIcon = document.querySelector('.cart_icon-link');
+        cartIcon.addEventListener('click', deleteItem)
+
         cartIcon.style.cursor = 'pointer';
         cartIcon.addEventListener('click', (e) => {
             const cart = cartIcon.querySelector('.cart');
@@ -98,9 +100,16 @@ let swiper = new Swiper(".mySwiper", {
     })
 
     function agregarProducto(e) {
+        let products = pedidos.productos;
+        let exits = products.some( product => product.id == e.currentTarget.getAttribute('data-id'))
+        if(exits){
+            alert('Producto ya agregado al carrito!');
+            return;
+        }
         showToast('success', 'Producto agregado al carrito');
         leerDatosProducto(e.currentTarget);
     }
+
 
     function leerDatosProducto(producto) {
         let imagen = producto.querySelector('img');
@@ -165,6 +174,31 @@ let swiper = new Swiper(".mySwiper", {
         cartCount();
     }
 
+    // Delete Items
+    function deleteItem(e){
+        if(e.target.classList.contains('bx-trash')){
+            let id = e.target.parentElement.dataset.id;
+            let obj = {...pedidos};
+            let {productos} = obj;
+            let filterProducts = productos.filter( product => product.id !== id );
+            pedidos.productos = filterProducts;
+
+            localStorage.setItem('pedidos', JSON.stringify(pedidos));
+            carritoHTML();
+            cartCount();
+            
+            const checkoutContainer = document.querySelector('.order_products') ?? null;
+
+            if(checkoutContainer){
+                checkoutHTML(pedidos);
+                updateTotal();
+            }else{
+                console.log(' no existe');
+            }
+        }
+            
+    }
+    
 
     function quantityChanged(event){
         let input = parseInt(event.target.value);
@@ -286,7 +320,7 @@ let swiper = new Swiper(".mySwiper", {
 
         setTimeout(() => {
             notifications.removeChild(notifications.lastElementChild);
-        }, 5000);
+        }, 3000);
     }
 
     document.addEventListener('DOMContentLoaded', () => {

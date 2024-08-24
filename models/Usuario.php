@@ -4,27 +4,29 @@ namespace Models;
 
 class Usuario extends Model{
 
-    private $id;
-    private $nombre;
-    private $apellidos;
-    private $email;
-    private $password;
-    private $imagen;
-    private $rol;
+    protected $id;
+    public $nombre;
+    public $apellidos;
+    public $email;
+    public $password;
+    public $imagen;
+    public $rol;
 
     private $keys = ['id', 'nombre', 'apellidos', 'email', 'password', 'imagen', 'rol'];
+    protected static $columnasDB = ['id', 'nombre', 'apellidos', 'email', 'password', 'imagen', 'rol'];
 
-    private static $alertas = [];
-    protected static $table = 'usuarios';
 
-    public function __construct($post){
+    protected static $alertas = [];
+    protected static $tabla = 'usuarios';
+
+    public function __construct($post = []){
         $this->id = $post['id'] ?? null;
         $this->nombre = isset($post['nombre']) ? self::$db->escape_string( trim($post['nombre'])) ?? '' : '';
         $this->apellidos = isset($post['apellidos']) ? self::$db->escape_string( trim($post['apellidos'])) ?? '' : '';
         $this->email = isset($post['email']) ? self::$db->escape_string( trim($post['email'])) ?? '' : '';
         $this->password = isset($post['password']) ? self::$db->escape_string( trim($post['password'])) ?? '' : '';
-        $this->imagen = 'default.jpg';
-        $this->rol = 'user';
+        $this->imagen = isset($post['imagen']) ? $post['imagen'] : 'default.png';
+        $this->rol = isset($post['rol']) ? $post['rol'] : 'user';
     }
 
     public function validarLogin(){
@@ -87,6 +89,10 @@ class Usuario extends Model{
         }
     }
 
+    public function setImagen($nombre){
+        $this->imagen = $nombre;
+    }
+
     private function saveKeys(){
         $atributos = [];
         foreach($this->keys as $value){
@@ -108,6 +114,22 @@ class Usuario extends Model{
 
     public function hashPassword(){
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+    }
+
+    public static function getOne($id){
+        $sql = "SELECT * FROM usuarios where id = " . $id;
+        $usuario = self::$db->query($sql);
+        if($usuario){
+            return $usuario->FETCH_ASSOC();
+        }
+    }
+
+    public static function getTotal(){
+        $sql = "SELECT count(*) as 'usuarios' FROM usuarios";
+        $usuario = self::$db->query($sql);
+        if($usuario){
+            return $usuario->FETCH_ASSOC();
+        }
     }
 
 }

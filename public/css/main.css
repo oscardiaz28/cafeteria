@@ -459,6 +459,7 @@ button {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
 }
 
 .menu .container{
@@ -606,11 +607,10 @@ button {
 
 .contact_form [type="time"]::-webkit-calendar-picker-indicator{
     color: white;
-    display: none;
 }
 
 .contact_form [type="date"]::-webkit-calendar-picker-indicator{
-    display: none;
+    color: white;
 }
 
 /* FOOTER */
@@ -730,9 +730,9 @@ button {
 }
 
 .menu_row{
-    display: flex;
-    align-items: center;
-    gap: 7rem;
+    /* display: flex; */
+    /* align-items: center; */
+    /* gap: 7rem; */
 }
 
 .menu_col{

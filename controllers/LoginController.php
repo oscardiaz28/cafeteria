@@ -90,7 +90,9 @@ class LoginController{
                         session_start();
                         $_SESSION['id'] = $save['id'];
                         $_SESSION['nombre'] = $_POST['nombre'];
+                        $_SESSION['apellidos'] = $_POST['apellidos'];
                         $_SESSION['email'] = $_POST['email'];
+                        $_SESSION['login'] = true;
                         $_SESSION['rol'] = 'user';
 
                         header('Location: /');

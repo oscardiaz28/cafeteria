@@ -11,9 +11,9 @@ $auth = isset($_SESSION) && !empty($_SESSION) ? true : false;
 
 <div class="menu_background">
     <section class="menu_page container">
-        <h2 class="section_title">Menu</h2>
+        <h2 class="section_title" data-aos="fade-up" data-aos-once="true">Menu</h2>
 
-        <div class="menu_row">
+        <div class="menu_row" data-aos="fade-up" data-aos-delay="500" data-aos-once="true">
             
             <div class="">
                 <?php foreach ($productos as $key => $producto) : ?>

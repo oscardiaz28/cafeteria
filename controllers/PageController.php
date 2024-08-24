@@ -4,13 +4,13 @@ namespace Controllers;
 
 use Models\Producto;
 use Models\Usuario;
-use Router\Router;
+use Router\Router;  
 
 class PageController{
 
     public static function index(Router $router){
-        $index = 'index';
 
+        $index = 'index';
         $router->render('pages/home', [
             'index' => $index
         ]);
@@ -22,7 +22,7 @@ class PageController{
 
     public static function menu(Router $router){
 
-        $productos = Producto::all();
+        $productos = Producto::allActive();
 
         $router->render('pages/menu', [
             'productos' => $productos
@@ -36,7 +36,6 @@ class PageController{
     public static function checkout(Router $router){
         session_start();
 
-       
         $router->render('pages/checkout', [
         ]);
     }

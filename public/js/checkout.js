@@ -20,29 +20,82 @@ if( id != null ){
     const dia = fechaActual.getDate().toString().padStart(2, '0');
     const formatFecha = año+"-"+mes+"-"+dia;
 
-    pedidos.id = id;
-    pedidos.estado = "en proceso";
+    const productos = JSON.stringify(pedidos.productos);
 
-
-    btnSubmit.addEventListener('click', () => {
+    btnSubmit.addEventListener('click', async () => {
 
         if(validarFormUsuario()){
-            pedidos.direccion = direccionUsuario.value;
-            pedidos.telefono = telefonoUsuario.value;
-            pedidos.fecha = formatFecha
+            const formData = new FormData();
+            formData.append('id_usuario', id);
+            formData.append('fecha', formatFecha);
+            formData.append('estado', "pendiente");
+            formData.append('direccion', direccionUsuario.value);
+            formData.append('telefono', telefonoUsuario.value);
+            formData.append('productos', productos)
 
-            console.log(pedidos);
+            //solicitud post
+            const response = await fetch("http://localhost:4000/api/pedidos", {
+                method : 'POST',
+                body: formData
+            })
+            const data = await response.json();
+
+            if(data.status == true){
+
+                localStorage.removeItem('pedidos');
+                let items = {
+                    productos : []
+                }
+
+                telefonoUsuario.value = '';
+                direccionUsuario.value = '';
+                checkoutHTML(items);
+
+                showModal();
+            }
         }
     })
+
+    function showModal(){
+        Swal.fire({
+            title: "Gracias por tu pedido",
+            icon: "success",
+            confirmButtonText: "OK",
+        }).then((result) => {
+            if(result.isConfirmed){
+                window.location.href = 'http://localhost:4000/mispedidos';
+            }
+        });
+    
+        const swal = document.querySelector('.swal2-popup');
+        swal.style.fontSize = "1.4rem";
+    }
     
     function validarFormUsuario(){
         if(direccionUsuario.value == '' || telefonoUsuario.value == ''){
-            console.log('Completar ambos campos');
+            showAlert('Completar ambos campos');
             return false;
         }
         return true;
     }
     
+    function showAlert(message){
+
+        const alert = document.querySelector('.alert');
+        if(alert){
+            return;
+        }
+        const form = direccionUsuario.parentElement.parentElement.parentElement;
+        const p = document.createElement('P');
+        p.classList.add('alert');
+        p.style.width = "100%";
+        p.style.backgroundColor = '#F8D7DA';
+        p.style.padding = '1.2rem 1.5rem';
+        p.style.borderRadius = '.5rem';
+        p.style.color = "#c3091c";
+        p.textContent = message;
+        form.appendChild(p);
+    }
 
     checkoutHTML(pedidos);
     updateTotal();

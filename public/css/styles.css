@@ -63,7 +63,7 @@
   width: 100%;
   bottom: 0px;
   left: 0px;
-  animation: progress 5s linear forwards;
+  animation: progress 3s linear forwards;
 }
 @keyframes progress {
   100% {
@@ -80,6 +80,116 @@
 .notifications :where(.toast, .column) {
   display: flex;
   align-items: center;
+}
+
+.invalid {
+  display: none;
+}
+
+.valid {
+  display: none;
+}
+
+.needs_validation .invalid {
+  display: block;
+  font-size: 1.2rem;
+  color: lightcoral;
+}
+
+.mispedidos {
+  overflow-x: auto;
+}
+.mispedidos .table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.mispedidos .table thead {
+  text-align: left;
+  background-color: #585858;
+}
+.mispedidos .table thead tr,
+.mispedidos .table tbody tr {
+  border: 1px solid #272727;
+}
+.mispedidos .table th, .mispedidos .table td {
+  padding: 2rem 3rem;
+}
+.mispedidos .table .link_detalle:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.mispedidos .table .link_detalle:hover a {
+  display: block;
+  width: 100%;
+}
+.mispedidos .table .state {
+  padding: 0 0.8rem;
+  border-radius: 0.6rem;
+  display: inline-block;
+  font-weight: bold;
+  text-transform: capitalize;
+  height: 3rem;
+  line-height: 3.2rem;
+}
+
+.detalle .overflow {
+  overflow-x: auto;
+}
+.detalle .back {
+  color: lightblue;
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 3rem;
+}
+.detalle .title {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+.detalle p {
+  color: #999;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.detalle p span {
+  color: white;
+}
+.detalle .separator {
+  margin: 4rem 0;
+}
+.detalle .state {
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+}
+.detalle .table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.detalle .table thead {
+  text-align: left;
+  background-color: #585858;
+}
+.detalle .table thead tr,
+.detalle .table tbody tr {
+  border: 1px solid #272727;
+}
+.detalle .table th, .detalle .table td {
+  padding: 2rem 3rem;
+}
+.detalle .img {
+  width: 15rem;
+}
+.detalle .img img {
+  border-radius: 50%;
+}
+.detalle .total {
+  color: rgb(224, 83, 83);
+}
+.detalle .flex {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 /*# sourceMappingURL=styles.css.map */

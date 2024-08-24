@@ -25,6 +25,7 @@
                         </span>
                     </a>
                     <?php if($auth): ?>
+                        <a href="/mispedidos" class="cart_link">Mis Pedidos</a>
                         <a href="/logout" class="cart_link">Cerrar Sesión</a>
                     
                     <?php else: ?>
@@ -66,6 +67,7 @@
                     </div>
 
                     <?php if($auth): ?>
+                        <a href="/mispedidos" class="cart_link">Mis Pedidos</a>
                         <a href="/logout" class="cart_link">Cerrar Sesión</a>
                     
                     <?php else: ?>
